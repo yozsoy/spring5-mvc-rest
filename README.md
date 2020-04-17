@@ -1,2 +1,1 @@
-# spring5-mvc-rest
-Restful Interfaces with Spring 5
+# Spring Framework 5 MVC Rest Application
