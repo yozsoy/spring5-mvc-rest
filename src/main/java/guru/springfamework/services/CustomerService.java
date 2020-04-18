@@ -18,4 +18,6 @@ public interface CustomerService {
     CustomerDTO getCustomerByFirstName(String firstName);
 
     CustomerDTO patchCustomer(Long id, CustomerDTO customerDTO);
+
+    void deleteCustomerById(Long id);
 }
