@@ -57,12 +57,12 @@ public class CustomerServiceImpl implements CustomerService {
                     customerDTO.setCustomerUrl(getCustomerUrl(id));
                     return customerDTO;
                 })
-                .orElseThrow(RuntimeException::new); //todo implement better exception handling
+                .orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
     public CustomerDTO createNewCustomer(CustomerDTO customerDTO) {
-        return saveAndReturnDTO(customerMapper.customerDtoToCustomer(customerDTO));
+        return saveAndReturnDTO(customerMapper.customerDTOToCustomer(customerDTO));
     }
 
     private CustomerDTO saveAndReturnDTO(Customer customer) {
@@ -74,7 +74,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDTO saveCustomerByDTO(Long id, CustomerDTO customerDTO) {
-        Customer customer = customerMapper.customerDtoToCustomer(customerDTO);
+        Customer customer = customerMapper.customerDTOToCustomer(customerDTO);
         customer.setId(id);
 
         return saveAndReturnDTO(customer);
@@ -102,7 +102,7 @@ public class CustomerServiceImpl implements CustomerService {
             returnDto.setCustomerUrl(getCustomerUrl(id));
 
             return returnDto;
-        }).orElseThrow(RuntimeException::new); //todo implement better exception handling;
+        }).orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
