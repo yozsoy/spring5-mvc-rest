@@ -16,4 +16,6 @@ public interface CustomerService {
     CustomerDTO getCustomerById(Long id);
 
     CustomerDTO getCustomerByFirstName(String firstName);
+
+    CustomerDTO patchCustomer(Long id, CustomerDTO customerDTO);
 }
