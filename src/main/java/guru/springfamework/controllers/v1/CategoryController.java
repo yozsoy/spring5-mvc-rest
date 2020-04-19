@@ -25,6 +25,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public CatergoryListDTO getallCatetories() {
         return new CatergoryListDTO(categoryService.getAllCategories());
