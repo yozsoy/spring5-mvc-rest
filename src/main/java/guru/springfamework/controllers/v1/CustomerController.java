@@ -6,6 +6,7 @@ import guru.springfamework.api.v1.model.CustomerDTO;
 import guru.springfamework.api.v1.model.CustomerListDTO;
 import guru.springfamework.domain.Customer;
 import guru.springfamework.services.CustomerService;
+import guru.springfamework.services.ResourceNotFoundException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
@@ -32,11 +33,10 @@ public class CustomerController {
                 new CustomerListDTO(customerService.getAllCustomers()), HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<CustomerDTO> getCategoryByName(@PathVariable Long id){
-        return new ResponseEntity(
-                customerService.getCustomerById(id), HttpStatus.OK
-        );
+    @GetMapping({"{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public CustomerDTO getCustomerById(@PathVariable Long id){
+        return customerService.getCustomerById(id);
     }
 
     @PostMapping
@@ -58,10 +58,8 @@ public class CustomerController {
     }
 
     @DeleteMapping({"{id}"})
-    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id){
-
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteCustomer(@PathVariable Long id){
         customerService.deleteCustomerById(id);
-
-        return new ResponseEntity<Void>(HttpStatus.OK);
     }
 }
